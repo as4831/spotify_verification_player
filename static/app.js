@@ -6,7 +6,7 @@ let results = [];           // { uri, comment }
 let currentIndex = 0;
 let player = null;
 let countdownTimer = null;
-const PLAY_WINDOW_SEC = 15;
+const PLAY_WINDOW_SEC = 5;
 
 // --- Helpers ---
 const $ = (id) => document.getElementById(id);
