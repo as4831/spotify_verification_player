@@ -83,6 +83,10 @@ def me_token():
         return jsonify({"authenticated": False}), 401
     return jsonify({"authenticated": True, "access_token": token})
 
+@app.route("/health")
+def health():
+    return {"ok": True}, 200
+
 @app.route("/spotify/play", methods=["PUT"])
 def spotify_play():
     """
