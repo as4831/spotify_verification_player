@@ -76,6 +76,10 @@ def callback():
     save_tokens(r.json())
     return redirect("/static/index.html#logged-in")
 
+@app.route("/debug-redirect")
+def debug_redirect():
+    return {"REDIRECT_URI": REDIRECT_URI}, 200
+
 @app.route("/me/token")
 def me_token():
     token = ensure_token()
