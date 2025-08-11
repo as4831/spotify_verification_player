@@ -234,3 +234,11 @@ async function runNext() {
     }
   }, 1000);
 }
+
+document.addEventListener("DOMContentLoaded", async () => {
+  try { await checkAuth(); } catch {}
+  if (location.hash === "#logged-in") {
+    // clean the URL so refreshes don’t look weird
+    history.replaceState(null, "", location.pathname);
+  }
+});
