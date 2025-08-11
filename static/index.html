@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Spotify 15s Notes 🦍</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://sdk.scdn.co/spotify-player.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Spotify 15s Notes</h1>
+    <button id="loginBtn">Login with Spotify</button>
+    <span id="status">Not logged in</span>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>1) Upload CSV of URIs</h2>
+      <p>CSV should have a header named <code>uri</code> or a single column of Spotify track URIs.</p>
+      <input type="file" id="csvInput" accept=".csv" />
+      <div id="fileInfo"></div>
+    </section>
+
+    <section class="card">
+      <h2>2) Connect Web Player</h2>
+      <button id="connectPlayerBtn" disabled>Connect Player</button>
+      <div id="playerInfo"></div>
+    </section>
+
+    <section class="card">
+      <h2>3) Run Session</h2>
+      <button id="startBtn" disabled>Start Session</button>
+      <div id="progress"></div>
+    </section>
+
+    <section class="card">
+      <h2>4) Download Results</h2>
+      <button id="downloadBtn" disabled>Download CSV</button>
+    </section>
+  </main>
+
+  <!-- Comment modal -->
+  <div id="modal" class="hidden">
+    <div class="modal-content">
+      <h3 id="trackTitle">Track</h3>
+      <p><span id="countdown">15</span>s playing… Type your notes below.</p>
+      <textarea id="commentBox" rows="6" placeholder="Your notes…"></textarea>
+      <div class="modal-actions">
+        <button id="nextBtn">Next Track</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
