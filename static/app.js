@@ -75,8 +75,9 @@ function downloadCsv(rows) {
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
+  const timestamp = new Date().toISOString().replace(/[:.]/g,"-");
   a.href = url;
-  a.download = "spotify_notes.csv";
+  a.download = "spotify_notes_${timestamp}.csv";
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -175,14 +176,19 @@ $("nextBtn").onclick = async () => {
   if (currentIndex >= uris.length) {
     // Done
     $("progress").textContent = `Done: ${uris.length}/${uris.length}`;
-    $("downloadBtn").disabled = false;
+    //$("downloadBtn").disabled = false;
     try { await fetch("/spotify/pause?device_id=" + encodeURIComponent(deviceId), { method: "PUT", credentials: "include" }); } catch {}
     return;
   }
   runNext();
 };
 
-$("downloadBtn").onclick = () => downloadCsv(results);
+$("downloadBtn").onclick = () => {
+  if (!results.length) {
+    alert("No notes yet to download.");
+  }
+  downloadCsv(results)
+};
 
 async function runNext() {
   const uri = uris[currentIndex];
