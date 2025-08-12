@@ -77,7 +77,7 @@ function downloadCsv(rows) {
   const a = document.createElement("a");
   const timestamp = new Date().toISOString().replace(/[:.]/g,"-");
   a.href = url;
-  a.download = "spotify_notes_${timestamp}.csv";
+  a.download = `spotify_notes_${timestamp}.csv`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
